@@ -3,12 +3,14 @@ import Message from "./Message.jsx"
 
 class MessageList extends React.Component {
   render () {
+    const allMessages = this.props.messages.map ((message) => {
+      return (
+        <Message key ={message.id} eachMessage = {message} />
+      )
+  })
     return (
       <main className="messages">
-        <Message />
-        <div className="message system">
-        Anonymous1 changed their name to nomnom.
-        </div>
+        {allMessages}
       </main>
     )
   }
