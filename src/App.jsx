@@ -2,6 +2,19 @@ import React, {Component} from 'react';
 import ChatBar from "./ChatBar.jsx"
 import MessageList from "./MessageList.jsx"
 
+const rando = (alphabet => {
+  const alphabetLength = alphabet.length;
+  const randoIter = (key, n) => {
+    if (n === 0) {
+      return key;
+    }
+    const randoIndex = Math.floor(Math.random() * alphabetLength);
+    const randoLetter = alphabet[randoIndex];
+    return randoIter(key + randoLetter, n - 1);
+  };
+  return () => randoIter("", 10);
+})("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -12,6 +25,7 @@ class App extends Component {
       { id: "2", username: "Anonymous", content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."}
       ]
     }
+    this.onNewPost = this.onNewPost.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +36,13 @@ class App extends Component {
     }, 3000);
   }
 
+  onNewPost(post) {
+      const user = this.state.currentUser.name
+      const newMessage = {id: rando(), username: user, content: post};
+      const messages = this.state.messages.concat(newMessage)
+      this.setState({messages: messages})
+  }
+
   render() {
     return (
       <div>
@@ -29,7 +50,7 @@ class App extends Component {
           <a href="/" className="navbar-brand">Chatty</a>
         </nav>
         <MessageList messages = {this.state.messages}/>
-        <ChatBar currentUser = {this.state.currentUser.name} />
+        <ChatBar currentUser = {this.state.currentUser.name} onNewPost = {this.onNewPost}/>
       </div>
     );
   }
