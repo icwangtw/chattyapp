@@ -4,6 +4,7 @@ class ChatBar extends React.Component {
   constructor(props) {
     super(props)
     this.onPost = this.onPost.bind(this)
+    this.userName = this.userName.bind(this)
   }
   onPost(event) {
     if (event.key === "Enter") {
@@ -13,10 +14,21 @@ class ChatBar extends React.Component {
     }
   }
 
+  userName(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (event.target.value.length === 0) {
+        this.props.onNameSet("Anonymous")
+      } else {
+        this.props.onNameSet(event.target.value);
+      }
+    }
+  }
+
   render () {
     return (
       <footer className="chatbar">
-        <input className="chatbar-username" placeholder="Your Name (Optional)" value = {this.props.currentUser} />
+        <input className="chatbar-username" placeholder="Your Name (Optional)" onKeyDown= {this.userName}/>
         <input className="chatbar-message" placeholder="Type a message and hit ENTER" onKeyDown= {this.onPost} />
       </footer>
     )
