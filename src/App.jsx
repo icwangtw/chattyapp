@@ -7,10 +7,8 @@ class App extends Component {
     super(props)
     this.state = {
       currentUser: {name: "Anonymous"}, // optional. if currentUser is not defined, it means the user is Anonymous
-      messages: [
-      { id: 1, username: "Bob", content: "Has anyone seen my marbles?", },
-      { id: 2, username: "Anonymous", content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."}
-      ],
+      messages: [],
+      userCount: ""
     }
     this.onNewPost = this.onNewPost.bind(this);
     this.onNameSet = this.onNameSet.bind(this);
@@ -20,8 +18,12 @@ class App extends Component {
     this.socket = new WebSocket("ws://localhost:3001")
     this.socket.onmessage = (event) => {
       const inboundmsg = JSON.parse(event.data)
-      const newmessages = this.state.messages.concat(inboundmsg)
-      this.setState({messages: newmessages})
+      if (inboundmsg.userCount !== undefined) {
+        this.setState({userCount: inboundmsg.userCount})
+      } else {
+        const newmessages = this.state.messages.concat(inboundmsg)
+        this.setState({messages: newmessages})
+      }
     }
   }
 
@@ -35,7 +37,6 @@ class App extends Component {
     const oldname = this.state.currentUser.name
     this.setState({currentUser:{name: username}})
     const alertstring = `${oldname} has changed its name to ${username}`
-    console.log(alertstring)
     const nameChange = {type: "notification", content: alertstring}
     this.socket.send(JSON.stringify(nameChange))
   }
@@ -45,6 +46,11 @@ class App extends Component {
       <div>
         <nav className="navbar">
           <a href="/" className="navbar-brand">Chatty</a>
+          {
+            this.state.userCount === 1 ?
+            <p className= "count"> {this.state.userCount} user online </p>:
+            <p className= "count"> {this.state.userCount} users online </p>
+          }
         </nav>
         <MessageList messages = {this.state.messages}/>
         <ChatBar onNameSet = {this.onNameSet} onNewPost = {this.onNewPost}/>
