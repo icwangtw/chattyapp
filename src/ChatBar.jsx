@@ -6,7 +6,7 @@ class ChatBar extends React.Component {
     this.onPost = this.onPost.bind(this)
   }
   onPost(event) {
-    if (event.keyCode === 13) {
+    if (event.key === "Enter") {
       event.preventDefault();
       this.props.onNewPost(event.target.value);
       event.target.value = "";
