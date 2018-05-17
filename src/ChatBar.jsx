@@ -2,9 +2,9 @@ import React from 'react';
 
 class ChatBar extends React.Component {
   constructor(props) {
-    super(props)
-    this.onPost = this.onPost.bind(this)
-    this.userName = this.userName.bind(this)
+    super(props);
+    this.onPost = this.onPost.bind(this);
+    this.userName = this.userName.bind(this);
   }
 
   //handles message input

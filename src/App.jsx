@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.socket = new WebSocket("ws://localhost:3001")
+    this.socket = new WebSocket("ws://localhost:3001");
     this.socket.onmessage = (event) => {
       const inboundmsg = JSON.parse(event.data)
       if (inboundmsg.type === "count") {
@@ -29,18 +29,18 @@ class App extends Component {
 
   //send new message to server
   onNewPost(post) {
-    const user = this.state.currentUser.name
+    const user = this.state.currentUser.name;
     const newMessage = {type: "msg", username: user, content: post};
     this.socket.send(JSON.stringify(newMessage))
   }
 
   //sets current username and send to server
   onNameSet(username) {
-    const oldname = this.state.currentUser.name
-    this.setState({currentUser:{name: username}})
-    const alertstring = `${oldname} has changed its name to ${username}`
-    const nameChange = {type: "notification", content: alertstring}
-    this.socket.send(JSON.stringify(nameChange))
+    const oldname = this.state.currentUser.name;
+    this.setState({currentUser:{name: username}});
+    const alertstring = `${oldname} has changed its name to ${username}`;
+    const nameChange = {type: "notification", content: alertstring};
+    this.socket.send(JSON.stringify(nameChange));
   }
 
   render() {

@@ -28,7 +28,7 @@ wss.broadcast = function broadcast(data) {
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
   console.log('Client connected');
-  let userCount = {id :uuidv1(), type: "count", userCount: wss.clients.size}
+  let userCount = {id :uuidv1(), type: "count", userCount: wss.clients.size};
   wss.broadcast(JSON.stringify(userCount))
   ws.on('message', function incoming(data) {
     const inbound = JSON.parse(data)
