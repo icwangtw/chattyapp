@@ -1,5 +1,5 @@
 const express = require('express');
-const SocketServer = require('ws').Server;
+const SocketServer = require('ws');
 
 const uuidv1 = require('uuid/v1');
 
@@ -13,13 +13,13 @@ const server = express()
   .listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT }`));
 
 // Create the WebSockets server
-const wss = new SocketServer({ server });
+const wss = new SocketServer.Server({ server });
 
 wss.broadcast = function broadcast(data) {
   wss.clients.forEach(function each(client) {
-    // if (client.readyState === server.OPEN) {
+    if (client.readyState === SocketServer.OPEN) {
       client.send(data);
-    // }
+    }
   });
 };
 

@@ -7,7 +7,7 @@ class MessageList extends React.Component {
       return (
         <Message key ={message.id} eachMessage = {message} />
       )
-  })
+    })
     return (
       <main className="messages">
         {allMessages}

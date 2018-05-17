@@ -6,6 +6,8 @@ class ChatBar extends React.Component {
     this.onPost = this.onPost.bind(this)
     this.userName = this.userName.bind(this)
   }
+
+  //handles message input
   onPost(event) {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -14,14 +16,14 @@ class ChatBar extends React.Component {
     }
   }
 
+  //handles name input
   userName(event) {
     if (event.key === "Enter") {
       event.preventDefault();
-      if (event.target.value.length === 0) {
-        this.props.onNameSet("Anonymous")
-      } else {
-        this.props.onNameSet(event.target.value);
-      }
+      event.target.value.length === 0 ?
+      this.props.onNameSet("Anonymous")
+      :
+      this.props.onNameSet(event.target.value)
     }
   }
 

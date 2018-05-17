@@ -8,7 +8,7 @@ class App extends Component {
     this.state = {
       currentUser: {name: "Anonymous"},
       messages: [],
-      userCount: ""
+      userCount: 0
     }
     this.onNewPost = this.onNewPost.bind(this);
     this.onNameSet = this.onNameSet.bind(this);
@@ -27,12 +27,14 @@ class App extends Component {
     }
   }
 
+  //send new message to server
   onNewPost(post) {
     const user = this.state.currentUser.name
     const newMessage = {type: "msg", username: user, content: post};
     this.socket.send(JSON.stringify(newMessage))
   }
 
+  //sets current username and send to server
   onNameSet(username) {
     const oldname = this.state.currentUser.name
     this.setState({currentUser:{name: username}})
@@ -46,11 +48,7 @@ class App extends Component {
       <div>
         <nav className="navbar">
           <a href="/" className="navbar-brand">Chatty</a>
-          {
-            this.state.userCount === 1 ?
-            <p className= "count"> {this.state.userCount} user online </p> :
-            <p className= "count"> {this.state.userCount} users online </p>
-          }
+          <p className= "count"> {this.state.userCount} {this.state.userCount === 1 ? " user online" : " users online"} </p>
         </nav>
         <MessageList messages = {this.state.messages}/>
         <ChatBar onNameSet = {this.onNameSet} onNewPost = {this.onNewPost}/>
