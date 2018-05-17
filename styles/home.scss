@@ -62,13 +62,15 @@ body {
 }
 
 .message-content,
-.message-username {
+.message-username
+{
   overflow: hidden;
   margin: 5px;
   padding: 2px 10px;
 }
 
-.message-content {
+.message-content,
+{
   flex: 8;
 }
 
@@ -99,3 +101,4 @@ body {
   padding: 0 10px;
   text-decoration: none;
 }
+

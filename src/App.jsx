@@ -7,7 +7,7 @@ class App extends Component {
     super(props)
     this.state = {
       currentUser: {name: "Anonymous"},
-      messages: [],
+      messages: [{id: "1", type: "msg", username: "test", content: "http://placehold.it/350x150.jpg"}, {id: "2", type: "msg", username: "hi", content: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Polarlicht_2.jpg"}],
       userCount: 0
     }
     this.onNewPost = this.onNewPost.bind(this);
