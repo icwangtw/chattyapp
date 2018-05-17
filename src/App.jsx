@@ -6,7 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentUser: {name: "Anonymous"}, // optional. if currentUser is not defined, it means the user is Anonymous
+      currentUser: {name: "Anonymous"},
       messages: [],
       userCount: ""
     }
@@ -18,7 +18,7 @@ class App extends Component {
     this.socket = new WebSocket("ws://localhost:3001")
     this.socket.onmessage = (event) => {
       const inboundmsg = JSON.parse(event.data)
-      if (inboundmsg.userCount !== undefined) {
+      if (inboundmsg.type === "count") {
         this.setState({userCount: inboundmsg.userCount})
       } else {
         const newmessages = this.state.messages.concat(inboundmsg)
@@ -48,7 +48,7 @@ class App extends Component {
           <a href="/" className="navbar-brand">Chatty</a>
           {
             this.state.userCount === 1 ?
-            <p className= "count"> {this.state.userCount} user online </p>:
+            <p className= "count"> {this.state.userCount} user online </p> :
             <p className= "count"> {this.state.userCount} users online </p>
           }
         </nav>
