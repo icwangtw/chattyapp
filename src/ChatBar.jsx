@@ -31,7 +31,7 @@ class ChatBar extends React.Component {
     return (
       <footer className="chatbar">
         <input className="chatbar-username" placeholder="Your Name (Optional)" onKeyDown= {this.userName}/>
-        <input className="chatbar-message" placeholder="Type a message and hit ENTER" onKeyDown= {this.onPost} />
+        <input className="chatbar-message" placeholder="Type a message or paste an image link and hit ENTER" onKeyDown= {this.onPost} />
       </footer>
     )
   }
