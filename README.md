@@ -1,9 +1,9 @@
 Chatty
 =====================
 
-An online chatroom application built with React, Webpack and WebSockets. User can send messages and image links.
+An online chatroom application built with React, Webpack and WebSockets where user can send messages and image links.
 
-### Screenshots
+### Screenshot
 
 ![Demo Image](https://github.com/icwangtw/chattyapp/blob/master/docs/demo.png)
 
