@@ -5,6 +5,7 @@ An online chatroom application built with React, Webpack and WebSockets. User ca
 
 ### Screenshots
 
+![Demo Image](https://github.com/icwangtw/chattyapp/blob/master/docs/demo.png)
 
 ### Dependencies
 
