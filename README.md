@@ -7,7 +7,7 @@ An online chatroom application built with React, Webpack and WebSockets where us
 
 ![Demo Image](https://github.com/icwangtw/chattyapp/blob/master/docs/demo.png)
 
-### Stack:
+### Stack
 
 * Webpack with Babel, JSX, ES6, webpack dev server (comes with boilerplate)
 * WebSockets using Node package ws on the server-side, and native WebSocket on client side
