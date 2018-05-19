@@ -1,7 +1,7 @@
 Chatty
 =====================
 
-An online chatroom application built with React, Webpack and WebSockets where user can send messages and image links. Users can communicate with each other anonymously without having to register accounts or enter a display name to identify themselves. A notification is shown when a user changes their display name. 
+Chatty is an online chatroom application built with React, Webpack and WebSockets where user can send messages and image links. Users can communicate with each other anonymously without having to register accounts, or enter a display name to identify themselves.
 
 ### Screenshot
 
